@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新北陸エアシステム 航空券予約</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #ffffff;
+        color: #333333;
+        font-family:
+            "MS PGothic",
+            "ＭＳ Ｐゴシック",
+            Arial,
+            sans-serif;
+        font-size: 13px;
+    }
+
+    a {
+        color: #0645ad;
+        text-decoration: underline;
+    }
+
+    .system-header {
+        border-bottom: 1px solid #b8b8b8;
+        padding: 10px 0;
+    }
+
+    .header-inner {
+        width: 900px;
+        margin: 0 auto;
+    }
+
+    .system-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #174f83;
+    }
+
+    .system-subtitle {
+        font-size: 11px;
+        color: #777;
+        margin-top: 3px;
+    }
+
+    .container {
+        width: 900px;
+        margin: 18px auto 50px;
+    }
+
+    .breadcrumb {
+        font-size: 11px;
+        color: #777;
+        margin-bottom: 15px;
+    }
+
+    .stepbar {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        margin-bottom: 18px;
+    }
+
+    .step {
+        display: table-cell;
+        border: 1px solid #b5b5b5;
+        background: #eeeeee;
+        padding: 7px 4px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+    }
+
+    .step.active {
+        background: #285f91;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .step.done {
+        background: #dfeaf3;
+        color: #285f91;
+    }
+
+    h1 {
+        font-size: 20px;
+        font-weight: normal;
+        color: #333;
+        border-left: 5px solid #285f91;
+        border-bottom: 1px solid #999;
+        padding: 5px 8px;
+        margin: 0 0 18px;
+    }
+
+    h2 {
+        font-size: 15px;
+        background: #eeeeee;
+        border-top: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        padding: 6px 8px;
+        margin: 20px 0 0;
+    }
+
+    table.form {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table.form th,
+    table.form td {
+        border: 1px solid #c8c8c8;
+        padding: 8px;
+    }
+
+    table.form th {
+        width: 190px;
+        background: #f3f3f3;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    input,
+    select {
+        font-family: inherit;
+        font-size: 13px;
+        padding: 4px;
+        border: 1px solid #999;
+        box-sizing: border-box;
+    }
+
+    input[type="text"] {
+        width: 280px;
+    }
+
+    input[type="email"] {
+        width: 350px;
+    }
+
+    input[type="date"] {
+        width: 150px;
+    }
+
+    input[type="number"] {
+        width: 80px;
+    }
+
+    .button-area {
+        text-align: center;
+        margin: 25px 0;
+    }
+
+    button {
+        font-family: inherit;
+        font-size: 14px;
+        padding: 8px 35px;
+        border: 1px solid #555;
+        background: linear-gradient(#ffffff, #dddddd);
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #eeeeee;
+    }
+
+    .notice {
+        border: 1px solid #c6c6c6;
+        background: #f8f8f8;
+        padding: 10px;
+        margin: 15px 0;
+        line-height: 1.6;
+    }
+
+    .warning {
+        color: #9b0000;
+    }
+
+    .flight {
+        border: 1px solid #aaa;
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    .flight-header {
+        background: #eeeeee;
+        border-bottom: 1px solid #bbb;
+        padding: 7px;
+        font-weight: bold;
+    }
+
+    .flight-body {
+        padding: 10px;
+    }
+
+    .flight-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .flight-table td {
+        padding: 5px;
+        vertical-align: middle;
+    }
+
+    .flight-time {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .flight-price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #174f83;
+    }
+
+    .seat-ok {
+        color: #006600;
+        font-weight: bold;
+        margin-left: 12px;
+    }
+
+    .seat-few {
+        color: #aa5500;
+        font-weight: bold;
+        margin-left: 12px;
+    }
+
+    .seat-none {
+        color: #888;
+    }
+
+    .summary {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    .summary th,
+    .summary td {
+        border: 1px solid #bbb;
+        padding: 8px;
+    }
+
+    .summary th {
+        width: 180px;
+        background: #eeeeee;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .complete {
+        border: 1px solid #999;
+        padding: 25px;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .complete-number {
+        font-size: 24px;
+        color: #174f83;
+        font-weight: bold;
+        margin: 15px;
+    }
+
+    .footer {
+        border-top: 1px solid #aaa;
+        padding-top: 10px;
+        color: #777;
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .required {
+        color: #cc0000;
+        font-size: 11px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="system-header">
+    <div class="header-inner">
+        <div class="system-title">
+            新北陸エアシステム 航空券予約システム
+        </div>
+        <div class="system-subtitle">
+            SHIN-HOKURIKU AIR SYSTEM ONLINE RESERVATION SYSTEM
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="breadcrumb">
+        新北陸エアシステム ＞ 航空券予約 ＞ <span id="breadcrumb">検索条件</span>
+    </div>
+
+    <div class="stepbar">
+        <div class="step active" id="step1">1. 検索条件</div>
+        <div class="step" id="step2">2. 便選択</div>
+        <div class="step" id="step3">3. 空席照会</div>
+        <div class="step" id="step4">4. お客様情報</div>
+        <div class="step" id="step5">5. お支払い</div>
+        <div class="step" id="step6">6. 予約完了</div>
+    </div>
+
+
+    <!-- STEP 1 -->
+
+    <section id="page1">
+
+        <h1>航空券検索</h1>
+
+        <div class="notice">
+            ご希望の搭乗区間・搭乗日・人数を入力してください。
+            <br>
+            <span class="warning">
+                ※本予約システムはデモンストレーション用です。実際の予約・決済は行われません。
+            </span>
+        </div>
+
+        <h2>搭乗条件</h2>
+
+        <table class="form">
+
+            <tr>
+                <th>搭乗区間</th>
+                <td>
+                    <select id="from">
+                        <option>小松</option>
+                        <option>新潟</option>
+                        <option>若狭</option>
+                        <option>東京（羽田）</option>
+                        <option>中部（セントレア）</option>
+                        <option>大阪（伊丹）</option>
+                    </select>
+
+                    →
+                    
+                    <select id="to">
+                        <option>東京（羽田）</option>
+                        <option>小松</option>
+                        <option>新潟</option>
+                        <option>若狭</option>
+                        <option>中部（セントレア）</option>
+                        <option>大阪（伊丹）</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th>搭乗日</th>
+                <td>
+                    <input type="date" id="date">
+                </td>
+            </tr>
+
+            <tr>
+                <th>搭乗人数</th>
+                <td>
+                    大人 
+                    <input type="number" id="adults" min="1" max="9" value="1">
+                    名 
+                    子供 
+                    <input type="number" id="children" min="0" max="9" value="0">
+                    名
+                </td>
+            </tr>
+
+            <tr>
+                <th>搭乗クラス</th>
+                <td>
+                    <select id="class">
+                        <option>普通席</option>
+                        <option>プレミアム席</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="button-area">
+            <button onclick="searchFlights()">空席照会へ進む</button>
+        </div>
+
+    </section>
+
+
+    <!-- STEP 2 -->
+
+    <section id="page2" class="hidden">
+
+
+        <h1>便選択</h1>
+        <div class="notice" id="search-summary"></div>
+
+        <h2>検索結果</h2>
+        <div id="flight-count" style="padding:8px 0;"></div>
+        <div id="flight-list"></div>
+
+        <div class="button-area">
+            <button onclick="backToSearch()">検索条件を変更</button>
+        </div>
+
+    </section>
+
+
+    <!-- STEP 3 -->
+
+    <section id="page3" class="hidden">
+
+        <h1>空席照会結果</h1>
+
+        <div class="notice">
+            選択された便について、空席状況を確認しました。
+        </div>
+
+        <table class="summary">
+
+            <tr>
+                <th>便名</th>
+                <td id="selected-flight"></td>
+            </tr>
+
+            <tr>
+                <th>出発時刻</th>
+                <td id="selected-time"></td>
+            </tr>
+
+            <tr>
+                <th>搭乗区間</th>
+                <td id="selected-route"></td>
+            </tr>
+
+            <tr>
+                <th>空席状況</th>
+                <td>
+                    <span class="seat-ok">○ 予約可能</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th>運賃</th>
+                <td>
+                    <span id="selected-price"></span>円
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="notice">
+            上記の内容で予約を進めますか？
+        </div>
+
+        <div class="button-area">
+
+            <button onclick="showPage(4)">
+                お客様情報の入力へ
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEP 4 -->
+
+    <section id="page4" class="hidden">
+
+        <h1>お客様情報入力</h1>
+
+        <div class="notice">
+            ご予約されるお客様の情報を入力してください。
+            <br>
+            <span class="warning">
+                ※デモ画面のため、入力された情報は外部へ送信されません。
+            </span>
+        </div>
+
+        <h2>代表者情報</h2>
+
+        <table class="form">
+
+            <tr>
+                <th>
+                    お名前 <span class="required">必須</span>
+                </th>
+                <td>
+                    <input type="text" id="name" placeholder="例：新北陸 太郎">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    お名前（フリガナ）
+                </th>
+                <td>
+                    <input type="text" id="kana" placeholder="例：シンホクリク タロウ">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    メールアドレス <span class="required">必須</span>
+                </th>
+                <td>
+                    <input type="email" id="email" placeholder="example@example.com">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    電話番号 <span class="required">必須</span>
+                </th>
+                <td>
+                    <input type="text" id="phone" placeholder="090-0000-0000">
+                </td>
+            </tr>
+
+        </table>
+
+        <h2>搭乗者情報</h2>
+
+        <table class="form">
+
+            <tr>
+                <th>搭乗者氏名</th>
+                <td>
+                    <input type="text" id="passenger" placeholder="代表者と同じ場合は同じ名前を入力">
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="button-area">
+
+            <button onclick="customerNext()">
+                お支払い方法の選択へ
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEP 5 -->
+
+    <section id="page5" class="hidden">
+
+        <h1>お支払い方法</h1>
+
+        <div class="notice">
+            お支払い方法を選択してください。
+            <br>
+            <span class="warning">
+                ※この画面はデモ用です。実際の決済処理は行われません。
+            </span>
+        </div>
+
+        <h2>お支払い方法</h2>
+
+        <table class="form">
+
+            <tr>
+                <th>支払方法</th>
+                <td>
+
+                    <label>
+                        <input type="radio"
+                               name="payment"
+                               value="credit"
+                               checked>
+                        クレジットカード
+                    </label>
+
+                    <br><br>
+
+                    <label>
+                        <input type="radio"
+                               name="payment"
+                               value="convenience">
+                        コンビニエンスストア支払い
+                    </label>
+
+                    <br><br>
+
+                    <label>
+                        <input type="radio"
+                               name="payment"
+                               value="bank">
+                        銀行振込
+                    </label>
+
+                </td>
+            </tr>
+
+        </table>
+
+
+        <h2>ご予約内容</h2>
+
+        <table class="summary">
+
+            <tr>
+                <th>搭乗者</th>
+                <td id="final-name"></td>
+            </tr>
+
+            <tr>
+                <th>便名</th>
+                <td id="final-flight"></td>
+            </tr>
+
+            <tr>
+                <th>搭乗区間</th>
+                <td id="final-route"></td>
+            </tr>
+
+            <tr>
+                <th>合計金額</th>
+                <td>
+                    <strong>
+                        ￥<span id="final-price"></span>
+                    </strong>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <div class="notice">
+
+            <label>
+                <input type="checkbox" id="agree">
+                予約内容およびデモ利用規約を確認しました。
+            </label>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button onclick="completeReservation()">
+                予約を確定する
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEP 6 -->
+
+    <section id="page6" class="hidden">
+
+        <h1>予約完了</h1>
+
+        <div class="complete">
+
+            <div>
+                新北陸エアシステムの航空券予約を受け付けました。
+            </div>
+
+            <div class="complete-number">
+                予約番号：NX-6A82F4
+            </div>
+
+            <div>
+                ご登録いただいたメールアドレス宛に<br>
+                予約確認メールを送信したものとします。
+            </div>
+
+            <br>
+
+            <div class="warning">
+                ※これはデモンストレーションです。実際の航空券予約・決済は成立していません。
+            </div>
+
+        </div>
+
+
+        <h2>予約内容</h2>
+
+        <table class="summary">
+
+            <tr>
+                <th>お名前</th>
+                <td id="complete-name"></td>
+            </tr>
+
+            <tr>
+                <th>便名</th>
+                <td id="complete-flight"></td>
+            </tr>
+
+            <tr>
+                <th>搭乗区間</th>
+                <td id="complete-route"></td>
+            </tr>
+
+            <tr>
+                <th>搭乗日</th>
+                <td id="complete-date"></td>
+            </tr>
+
+            <tr>
+                <th>合計金額</th>
+                <td>
+                    ￥<span id="complete-price"></span>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <div class="button-area">
+
+            <button onclick="location.href='index.html'">
+                トップページへ戻る
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        新北陸エアシステム株式会社<br>
+        本予約システムは架空の航空会社によるデモンストレーションサイトです。<br>
+        Copyright © Shin-Hokuriku Air System Co., Ltd. All Rights Reserved.
+
+    </div>
+
+</div>
+
+
+<script>
+/* =========================================================
+   新北陸エアシステム デモ予約システム
+   便データ：各便を個別登録
+   ========================================================= */
+
+const flights = [
+    ["NX201", "小松", "東京（羽田）", "06:50", "07:55", 14800, "○"],
+    ["NX203", "小松", "東京（羽田）", "09:10", "10:15", 15200, "○"],
+    ["NX205", "小松", "東京（羽田）", "13:25", "14:30", 15900, "△"],
+    ["NX207", "小松", "東京（羽田）", "17:45", "18:50", 16200, "○"],
+    ["NX209", "小松", "東京（羽田）", "20:05", "21:10", 15500, "○"],
+    ["NX211", "東京（羽田）", "小松", "07:20", "08:25", 14800, "○"],
+    ["NX213", "東京（羽田）", "小松", "10:40", "11:45", 15200, "○"],
+    ["NX215", "東京（羽田）", "小松", "14:50", "15:55", 15900, "△"],
+    ["NX217", "東京（羽田）", "小松", "18:30", "19:35", 16200, "○"],
+    ["NX219", "東京（羽田）", "小松", "21:00", "22:05", 15500, "○"],
+    ["NX301", "小松", "新潟", "08:10", "09:00", 9800, "○"],
+    ["NX303", "小松", "新潟", "16:20", "17:10", 10200, "○"],
+    ["NX305", "新潟", "小松", "09:35", "10:25", 9800, "○"],
+    ["NX307", "新潟", "小松", "17:50", "18:40", 10200, "△"],
+    ["NX501", "東京（羽田）", "新潟", "08:00", "08:55", 13200, "○"],
+    ["NX503", "東京（羽田）", "新潟", "15:10", "16:05", 13900, "△"],
+    ["NX505", "東京（羽田）", "新潟", "19:20", "20:15", 13500, "○"],
+    ["NX502", "新潟", "東京（羽田）", "09:35", "10:30", 13200, "○"],
+    ["NX504", "新潟", "東京（羽田）", "16:45", "17:40", 13900, "○"],
+    ["NX506", "新潟", "東京（羽田）", "20:55", "21:50", 13500, "△"],
+    ["NX601", "東京（羽田）", "若狭", "07:15", "08:25", 17600, "○"],
+    ["NX603", "東京（羽田）", "若狭", "12:05", "13:15", 18400, "△"],
+    ["NX605", "東京（羽田）", "若狭", "17:20", "18:30", 18900, "○"],
+    ["NX607", "東京（羽田）", "若狭", "20:15", "21:25", 18200, "○"],
+    ["NX602", "若狭", "東京（羽田）", "09:10", "10:20", 17600, "○"],
+    ["NX604", "若狭", "東京（羽田）", "14:00", "15:10", 18400, "○"],
+    ["NX606", "若狭", "東京（羽田）", "19:10", "20:20", 18900, "△"],
+    ["NX608", "若狭", "東京（羽田）", "21:55", "23:05", 18200, "○"],
+    ["NX701", "中部（セントレア）", "小松", "08:30", "09:20", 8900, "○"],
+    ["NX703", "中部（セントレア）", "小松", "15:40", "16:30", 9300, "○"],
+    ["NX705", "中部（セントレア）", "小松", "19:00", "19:50", 9500, "△"],
+    ["NX702", "小松", "中部（セントレア）", "10:05", "10:55", 8900, "○"],
+    ["NX704", "小松", "中部（セントレア）", "17:15", "18:05", 9300, "○"],
+    ["NX706", "小松", "中部（セントレア）", "20:35", "21:25", 9500, "○"],
+    ["NX711", "中部（セントレア）", "若狭", "07:55", "09:00", 10800, "○"],
+    ["NX713", "中部（セントレア）", "若狭", "16:05", "17:10", 11200, "○"],
+    ["NX712", "若狭", "中部（セントレア）", "09:45", "10:50", 10800, "○"],
+    ["NX714", "若狭", "中部（セントレア）", "18:00", "19:05", 11200, "△"],
+    ["NX801", "大阪（伊丹）", "小松", "07:10", "08:00", 9200, "○"],
+    ["NX803", "大阪（伊丹）", "小松", "11:20", "12:10", 9500, "○"],
+    ["NX805", "大阪（伊丹）", "小松", "16:30", "17:20", 9800, "△"],
+    ["NX807", "大阪（伊丹）", "小松", "19:40", "20:30", 9500, "○"],
+    ["NX802", "小松", "大阪（伊丹）", "08:40", "09:30", 9200, "○"],
+    ["NX804", "小松", "大阪（伊丹）", "12:55", "13:45", 9500, "○"],
+    ["NX806", "小松", "大阪（伊丹）", "18:05", "18:55", 9800, "○"],
+    ["NX808", "小松", "大阪（伊丹）", "21:10", "22:00", 9500, "△"],
+    ["NX821", "大阪（伊丹）", "新潟", "08:05", "09:15", 13800, "○"],
+    ["NX823", "大阪（伊丹）", "新潟", "15:30", "16:40", 14500, "△"],
+    ["NX822", "新潟", "大阪（伊丹）", "10:05", "11:15", 13800, "○"],
+    ["NX824", "新潟", "大阪（伊丹）", "17:25", "18:35", 14500, "○"],
+    ["NX831", "中部（セントレア）", "新潟", "09:00", "10:00", 12500, "○"],
+    ["NX833", "中部（セントレア）", "新潟", "17:00", "18:00", 13200, "△"],
+    ["NX832", "新潟", "中部（セントレア）", "10:40", "11:40", 12500, "○"],
+    ["NX834", "新潟", "中部（セントレア）", "18:40", "19:40", 13200, "○"]
+];
+
+let reservation = {
+    from: "",
+    to: "",
+    date: "",
+    adults: 1,
+    children: 0,
+    className: "",
+    flight: "",
+    departure: "",
+    arrival: "",
+    price: 0,
+    seatStatus: "",
+    name: "",
+    kana: "",
+    email: "",
+    phone: "",
+    passenger: ""
+};
+
+function showPage(number) {
+    for (let i = 1; i <= 6; i++) {
+        const page = document.getElementById("page" + i);
+        const step = document.getElementById("step" + i);
+        if (page) page.classList.add("hidden");
+        if (step) {
+            step.classList.remove("active");
+            step.classList.remove("done");
+        }
+    }
+
+    document.getElementById("page" + number).classList.remove("hidden");
+
+    for (let i = 1; i < number; i++) {
+        document.getElementById("step" + i).classList.add("done");
+    }
+
+    document.getElementById("step" + number).classList.add("active");
+
+    const titles = [
+        "",
+        "検索条件",
+        "便選択",
+        "空席照会",
+        "お客様情報",
+        "お支払い",
+        "予約完了"
+    ];
+
+    document.getElementById("breadcrumb").textContent = titles[number];
+    window.scrollTo(0, 0);
+}
+
+function searchFlights() {
+    reservation.from = document.getElementById("from").value;
+    reservation.to = document.getElementById("to").value;
+    reservation.date = document.getElementById("date").value;
+    reservation.adults = parseInt(document.getElementById("adults").value, 10) || 1;
+    reservation.children = parseInt(document.getElementById("children").value, 10) || 0;
+    reservation.className = document.getElementById("class").value;
+
+    if (reservation.from === reservation.to) {
+        alert("出発地と到着地が同じです。");
+        return;
+    }
+
+    if (!reservation.date) {
+        alert("搭乗日を選択してください。");
+        return;
+    }
+
+    if (reservation.adults < 1) {
+        alert("大人は1名以上を指定してください。");
+        return;
+    }
+
+    if (reservation.adults + reservation.children > 9) {
+        alert("一度に予約できる人数は9名までです。");
+        return;
+    }
+
+    renderFlights();
+    showPage(2);
+}
+
+function renderFlights() {
+    const list = document.getElementById("flight-list");
+
+    const results = flights.filter(function(f) {
+        return f[1] === reservation.from && f[2] === reservation.to;
+    });
+
+    document.getElementById("search-summary").innerHTML =
+        "<strong>検索条件：</strong> " +
+        escapeHTML(reservation.from) + " → " +
+        escapeHTML(reservation.to) + " " +
+        escapeHTML(reservation.date) + " " +
+        "大人 " + reservation.adults + "名 " +
+        "子供 " + reservation.children + "名 " +
+        escapeHTML(reservation.className);
+
+    document.getElementById("flight-count").textContent =
+        results.length + "件の便が見つかりました。";
+
+    if (results.length === 0) {
+        list.innerHTML =
+            '<div class="notice">指定された区間に該当する便はありません。<br>' +
+            '検索条件を変更してください。</div>';
+        return;
+    }
+
+    list.innerHTML = results.map(function(f) {
+        const flight = f[0];
+        const from = f[1];
+        const to = f[2];
+        const dep = f[3];
+        const arr = f[4];
+        const price = f[5];
+        const status = f[6];
+
+        const statusClass = status === "○" ? "seat-ok" : "seat-few";
+        const statusText = status === "○" ? "○ 空席あり" : "△ 残りわずか";
+
+        return `
+        <div class="flight">
+            <div class="flight-header">
+                ${escapeHTML(flight)} ${escapeHTML(from)} → ${escapeHTML(to)}
+            </div>
+
+            <div class="flight-body">
+                <table class="flight-table">
+                    <tr>
+                        <td width="105">
+                            <span class="flight-time">${escapeHTML(dep)}</span>
+                        </td>
+
+                        <td width="170">${escapeHTML(from)}</td>
+
+                        <td width="55">→</td>
+
+                        <td width="105">
+                            <span class="flight-time">${escapeHTML(arr)}</span>
+                        </td>
+
+                        <td>${escapeHTML(to)}</td>
+
+                        <td align="right">
+                            <span class="flight-price">
+                                ￥${price.toLocaleString()}～
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6">
+                            所要時間：約${duration(dep, arr)}
+                            <span class="${statusClass}">
+                                ${statusText}
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6" align="right">
+                            <button onclick="selectFlight(
+                                '${flight}',
+                                '${dep}',
+                                '${arr}',
+                                ${price},
+                                '${status}'
+                            )">
+                                この便を選択
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function selectFlight(flight, departure, arrival, price, status) {
+    reservation.flight = flight;
+    reservation.departure = departure;
+    reservation.arrival = arrival;
+    reservation.price = price;
+    reservation.seatStatus = status;
+
+    document.getElementById("selected-flight").textContent =
+        reservation.flight;
+
+    document.getElementById("selected-time").textContent =
+        reservation.departure + " → " + reservation.arrival;
+
+    document.getElementById("selected-route").textContent =
+        reservation.from + " → " + reservation.to;
+
+    const seatElement = document.querySelector("#page3 .seat-ok, #page3 .seat-few");
+    if (seatElement) {
+        seatElement.textContent =
+            status === "○" ? "○ 予約可能" : "△ 残りわずか・予約可能";
+        seatElement.className =
+            status === "○" ? "seat-ok" : "seat-few";
+    }
+
+    document.getElementById("selected-price").textContent =
+        reservation.price.toLocaleString();
+
+    showPage(3);
+}
+
+function backToSearch() {
+    showPage(1);
+}
+
+function customerNext() {
+    reservation.name =
+        document.getElementById("name").value.trim();
+
+    reservation.kana =
+        document.getElementById("kana").value.trim();
+
+    reservation.email =
+        document.getElementById("email").value.trim();
+
+    reservation.phone =
+        document.getElementById("phone").value.trim();
+
+    reservation.passenger =
+        document.getElementById("passenger").value.trim();
+
+    if (!reservation.name) {
+        alert("お名前を入力してください。");
+        return;
+    }
+
+    if (!reservation.email) {
+        alert("メールアドレスを入力してください。");
+        return;
+    }
+
+    if (!reservation.phone) {
+        alert("電話番号を入力してください。");
+        return;
+    }
+
+    if (!reservation.passenger) {
+        reservation.passenger = reservation.name;
+    }
+
+    document.getElementById("final-name").textContent =
+        reservation.name;
+
+    document.getElementById("final-flight").textContent =
+        reservation.flight;
+
+    document.getElementById("final-route").textContent =
+        reservation.from + " → " + reservation.to;
+
+    document.getElementById("final-price").textContent =
+        calculateTotal().toLocaleString();
+
+    showPage(5);
+}
+
+function calculateTotal() {
+    const adults = Number(reservation.adults);
+    const children = Number(reservation.children);
+    const childPrice = Math.round(reservation.price * 0.75);
+
+    return (adults * reservation.price) +
+           (children * childPrice);
+}
+
+function completeReservation() {
+    if (!document.getElementById("agree").checked) {
+        alert("予約内容およびデモ利用規約への同意が必要です。");
+        return;
+    }
+
+    document.getElementById("complete-name").textContent =
+        reservation.name;
+
+    document.getElementById("complete-flight").textContent =
+        reservation.flight;
+
+    document.getElementById("complete-route").textContent =
+        reservation.from + " → " + reservation.to;
+
+    document.getElementById("complete-date").textContent =
+        reservation.date;
+
+    document.getElementById("complete-price").textContent =
+        calculateTotal().toLocaleString();
+
+    const code =
+        "NX-" +
+        Math.random().toString(36).substring(2, 8).toUpperCase();
+
+    document.querySelector(".complete-number").textContent =
+        "予約番号：" + code;
+
+    showPage(6);
+}
+
+function duration(dep, arr) {
+    const [dh, dm] = dep.split(":").map(Number);
+    const [ah, am] = arr.split(":").map(Number);
+
+    let start = dh * 60 + dm;
+    let end = ah * 60 + am;
+
+    if (end < start) end += 24 * 60;
+
+    const min = end - start;
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+
+    return h + "時間" + String(m).padStart(2, "0") + "分";
+}
+
+function escapeHTML(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+(function() {
+    const dateInput = document.getElementById("date");
+    if (dateInput && !dateInput.value) {
+        const d = new Date();
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        dateInput.value = yyyy + "-" + mm + "-" + dd;
+    }
+})();
+</script>
+
+</body>
+</html>

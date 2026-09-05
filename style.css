@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+a {
+  color: #005b9e;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 画像ダミー枠の共通スタイル */
+.img-placeholder {
+  background-color: #e2e8f0;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: monospace;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* メインコンテナ */
+.container {
+  width: 960px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+/* ヘッダー */
+header {
+  padding: 15px 20px 10px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 160px;
+  height: 40px;
+}
+
+.company-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #003B70;
+  letter-spacing: 1px;
+}
+
+.company-sub {
+  font-size: 10px;
+  color: #666;
+}
+
+/* グローバルナビゲーション */
+nav.global-nav {
+  background: linear-gradient(to bottom, #005b9e 0%, #003b70 100%);
+  border-radius: 4px;
+}
+
+nav.global-nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav.global-nav li {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+nav.global-nav li:last-child {
+  border-right: none;
+}
+
+nav.global-nav a {
+  display: block;
+  padding: 10px 0;
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+nav.global-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+}
+
+/* メインビジュアル */
+.main-visual {
+  position: relative;
+  width: 920px;
+  height: 280px;
+  margin: 15px auto;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* レイアウト（3カラム） */
+.main-content {
+  display: flex;
+  padding: 0 20px 20px;
+  gap: 15px;
+}
+
+/* 左カラム（検索フォーム） */
+.col-left {
+  width: 220px;
+}
+
+.search-box {
+  background-color: #f0f4f8;
+  border: 1px solid #c5d2e0;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.search-box h3 {
+  font-size: 13px;
+  color: #003b70;
+  border-bottom: 2px solid #005b9e;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 4px;
+  font-size: 12px;
+}
+
+.btn-search {
+  width: 100%;
+  background-color: #e65c00;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.btn-search:hover {
+  background-color: #cc5200;
+}
+
+.btn-status {
+  background-color: #005b9e;
+}
+
+.btn-status:hover {
+  background-color: #003b70;
+}
+
+/* 中央カラム（ニュース） */
+.col-center {
+  flex: 1;
+}
+
+.info-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: #fff;
+}
+
+.info-box h3 {
+  font-size: 14px;
+  color: #003b70;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.info-list {
+  list-style: none;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.info-item {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #eee;
+}
+
+.info-date {
+  font-size: 11px;
+  color: #888;
+}
+
+  .info-title {
+  font-weight: bold;
+  color: #005b9e;
+  display: block;
+  margin: 2px 0;
+}
+
+.info-desc {
+  font-size: 11px;
+  color: #555;
+}
+
+/* 右カラム（バナー群） */
+.col-right {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.banner-item {
+  height: 50px;
+}
+
+.banner-item-lg {
+  height: 70px;
+}
+
+/* 下部バナーエリア */
+.bottom-banners {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px 20px;
+}
+
+.bottom-banner-box {
+  flex: 1;
+  height: 60px;
+}
+
+/* フッター */
+footer {
+  background-color: #00254a;
+  color: #fff;
+  padding: 20px;
+  font-size: 11px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  list-style: none;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #ccc;
+}
+
+.copyright {
+  text-align: center;
+  color: #888;
+}
