@@ -513,3 +513,122 @@ footer {
       font-size: 10px;
       margin-top: 8px;
     }
+
+    /* ========================================
+timetable.html 専用
+======================================== */
+
+.timetable-section {
+margin-bottom: 30px;
+}
+
+.timetable-subtitle {
+color: #003b70;
+font-size: 13px;
+font-weight: bold;
+border-left: 4px solid #005b9e;
+background: #f0f4f8;
+border-bottom: 1px solid #d5dee7;
+padding: 6px 10px;
+margin: 15px 0 8px;
+}
+
+/* 時刻表本体 */
+.timetable {
+width: 100%;
+border-collapse: collapse;
+border: 1px solid #cbd5e1;
+table-layout: fixed;
+background-color: #fff;
+}
+
+.timetable th,
+.timetable td {
+border: 1px solid #d7dee6;
+padding: 8px 6px;
+text-align: center;
+font-size: 11px;
+white-space: nowrap;
+}
+
+.timetable th {
+background: #eef3f7;
+color: #003b70;
+font-weight: bold;
+}
+
+.timetable tbody tr:nth-child(even) {
+background-color: #fafcfd;
+}
+
+.timetable tbody tr:hover {
+background-color: #f1f7fb;
+}
+
+/* 列幅 */
+.timetable th:nth-child(1),
+.timetable td:nth-child(1) {
+width: 100px;
+}
+
+.timetable th:nth-child(2),
+.timetable td:nth-child(2) {
+width: 120px;
+}
+
+.timetable th:nth-child(3),
+.timetable td:nth-child(3) {
+width: 120px;
+}
+
+.timetable th:nth-child(4),
+.timetable td:nth-child(4) {
+width: 120px;
+}
+
+.timetable th:nth-child(5),
+.timetable td:nth-child(5) {
+width: 140px;
+}
+
+.timetable th:nth-child(6),
+.timetable td:nth-child(6) {
+width: 70px;
+}
+
+/* 便名 */
+.flight-number {
+color: #005b9e;
+font-weight: bold;
+font-family: Arial, sans-serif;
+}
+
+/* 時刻 */
+.time {
+font-size: 15px !important;
+font-weight: bold;
+color: #333;
+}
+
+/* 空席表示 */
+.seat-ok {
+color: #008000;
+font-size: 15px !important;
+font-weight: bold;
+}
+
+.seat-few {
+color: #e65c00;
+font-size: 15px !important;
+font-weight: bold;
+}
+
+/* 時刻表内リンク */
+.timetable a {
+color: #005b9e;
+}
+
+/* 時刻表の注意書き */
+.timetable-section + .section {
+margin-top: 10px;
+}
